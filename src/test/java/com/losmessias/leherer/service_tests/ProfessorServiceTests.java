@@ -1,6 +1,7 @@
 package com.losmessias.leherer.service_tests;
 
 import com.losmessias.leherer.domain.Professor;
+import com.losmessias.leherer.domain.ProfessorSubject;
 import com.losmessias.leherer.domain.Subject;
 import com.losmessias.leherer.repository.ProfessorRepository;
 import com.losmessias.leherer.service.ProfessorService;
@@ -45,11 +46,12 @@ public class ProfessorServiceTests {
     @Test
     void testGetProfessorSubjects() {
         Professor professor = new Professor("John", "Doe");
-        Subject subject = new Subject( "Math");
-        professor.addSubject(subject);
+        Subject subject = new Subject("Math");
+        ProfessorSubject professorSubject = new ProfessorSubject(professor, subject);
+        professor.addSubject(professorSubject);
 
 //        System.out.println(professor.toString());
         when(professorRepository.save(professor)).thenReturn(professor);
-        assertEquals(professorService.addSubjectTo(professor, subject), professor);
+        assertEquals(professorService.addSubjectTo(professorSubject), professor);
     }
 }

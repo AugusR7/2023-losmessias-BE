@@ -26,15 +26,9 @@ public class Professor {
     @Column
     private String lastName;
 
-    @ManyToMany(
-            fetch = FetchType.LAZY
-    )
-    @JoinTable(
-            name = "professor_subject",
-            joinColumns = @JoinColumn(name = "professor_id"),
-            inverseJoinColumns = @JoinColumn(name = "subject_id")
-    )
-    private Set<Subject> subjects;
+    @OneToMany(mappedBy = "professor")
+    private Set<ProfessorSubject> subjects;
+
 
     public Professor(String firstName, String lastName) {
         this.firstName = firstName;
@@ -43,7 +37,7 @@ public class Professor {
     }
 
 
-    public void addSubject(Subject subject) {
+    public void addSubject(ProfessorSubject subject) {
         this.subjects.add(subject);
     }
 
