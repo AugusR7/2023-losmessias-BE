@@ -16,7 +16,6 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -25,7 +24,8 @@ jobs:
       uses: actions/setup-java@v3
       with:
         java-version: '17'
-        distribution: 'correto'
+        distribution: 'corretto'
+
         cache: maven
     - name: Build with Maven
       run: mvn -B package --file pom.xml
