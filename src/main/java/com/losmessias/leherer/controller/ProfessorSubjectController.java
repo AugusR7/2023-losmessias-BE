@@ -34,6 +34,7 @@ public class ProfessorSubjectController {
         return professorSubjectService.findById(id);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/createAssociation")
     public ProfessorSubject createProfessorSubject(Long professorId, Long subjectId) {
         Professor professor = professorService.getProfessorById(professorId);
